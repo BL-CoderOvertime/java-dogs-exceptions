@@ -1,6 +1,7 @@
 package com.example.dog.controller
 
 import com.example.dog.CheckDog
+import com.example.dog.exception.ResourceNotFoundException
 import com.example.dog.model.Dog
 import com.example.dog.ourDogList
 import org.springframework.http.HttpStatus
@@ -44,6 +45,10 @@ class DogController {
                 }
             }
         })
+
+        if(rtnDogs.size == 0){
+            throw ResourceNotFoundException("No Dogs of breed $breed found.")
+        }
         return ResponseEntity(rtnDogs, HttpStatus.OK)
     }
 
@@ -51,7 +56,7 @@ class DogController {
     fun displayDogTable():ModelAndView{
         var mav = ModelAndView()
         mav.viewName = "dogs"
-        mav.addObject("dogList", ourDogList)
+        mav.addObject("dogList", ourDogList.dogList)
 
         return mav
     }
