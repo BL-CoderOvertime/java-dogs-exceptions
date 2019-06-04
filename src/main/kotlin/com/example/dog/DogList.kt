@@ -1,5 +1,6 @@
 package com.example.dog
 
+import com.example.dog.model.Dog
 import java.util.ArrayList
 
 class DogList {

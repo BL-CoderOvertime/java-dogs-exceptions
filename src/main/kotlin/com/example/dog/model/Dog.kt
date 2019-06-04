@@ -1,4 +1,4 @@
-package com.example.dog
+package com.example.dog.model
 
 import java.util.concurrent.atomic.AtomicLong
 
@@ -22,6 +22,8 @@ class Dog {
         this.weight = toClone.weight
         this.isApartmentSuitable = toClone.isApartmentSuitable
     }
+
+
 
     companion object {
         private val counter = AtomicLong()

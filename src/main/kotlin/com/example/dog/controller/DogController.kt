@@ -1,13 +1,15 @@
-package com.example.dog
+package com.example.dog.controller
 
+import com.example.dog.CheckDog
+import com.example.dog.model.Dog
+import com.example.dog.ourDogList
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-
-import java.util.ArrayList
+import org.springframework.web.servlet.ModelAndView
 
 @RestController
 @RequestMapping("/dogs")
@@ -22,7 +24,10 @@ class DogController {
     fun getDogDetail(@PathVariable id: Long): ResponseEntity<*> {
         val rtnDog = ourDogList.findDog(object: CheckDog {
             override fun test(d: Dog): Boolean {
-                 return test(d)
+                 return when(d.id){
+                     id -> true
+                     else -> false
+                 }
             }
         })
         return ResponseEntity(rtnDog, HttpStatus.OK)
@@ -31,11 +36,23 @@ class DogController {
     // localhost:8080/dogs/breeds/{breed}
     @GetMapping(value = "/breeds/{breed}")
     fun getDogBreeds(@PathVariable breed: String): ResponseEntity<*> {
-        val rtnDogs = ourDogList.findDogs(object: CheckDog{
+        val rtnDogs = ourDogList.findDogs(object: CheckDog {
             override fun test(d: Dog): Boolean {
-                return test(d)
+                return when(d.breed){
+                    breed -> true
+                    else -> false
+                }
             }
         })
         return ResponseEntity(rtnDogs, HttpStatus.OK)
+    }
+
+    @GetMapping(value = "/dogtable")
+    fun displayDogTable():ModelAndView{
+        var mav = ModelAndView()
+        mav.viewName = "dogs"
+        mav.addObject("dogList", ourDogList)
+
+        return mav
     }
 }
