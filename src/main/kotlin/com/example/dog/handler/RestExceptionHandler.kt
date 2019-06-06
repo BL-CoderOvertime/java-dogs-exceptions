@@ -30,7 +30,7 @@ class RestExceptionHandler : ResponseEntityExceptionHandler() {
         errorDetail.setTimestamp(Date().time)
         errorDetail.status = HttpStatus.NOT_FOUND.value()
         errorDetail.title = "Resource Not Found"
-        errorDetail.detail = rnfe.message
+        errorDetail.detail = rnfe.message!!
         errorDetail.developerMessage = rnfe.javaClass.name
 
         return ResponseEntity(errorDetail, null, HttpStatus.NOT_FOUND)
@@ -41,8 +41,8 @@ class RestExceptionHandler : ResponseEntityExceptionHandler() {
         val errorDetail = ErrorDetail()
         errorDetail.setTimestamp(Date().time)
         errorDetail.status = HttpStatus.BAD_REQUEST.value()
-        errorDetail.title = ex.propertyName
-        errorDetail.detail = ex.message
+        errorDetail.title = ex.propertyName!!
+        errorDetail.detail = ex.message!!
         errorDetail.developerMessage = request.getDescription(true)
 
         return ResponseEntity(errorDetail, null, HttpStatus.BAD_REQUEST)
