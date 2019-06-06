@@ -7,7 +7,7 @@ to you under the Apache License, Version 2.0 (the
 "License"); you may not use this file except in compliance
 with the License.  You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an
@@ -59,8 +59,8 @@ public class MavenWrapperDownloader {
 
         // If the maven-wrapper.properties exists, read it and check if it contains a custom
         // wrapperUrl parameter.
-        File   mavenWrapperPropertyFile = new File(baseDirectory, MAVEN_WRAPPER_PROPERTIES_PATH);
-        String url                      = DEFAULT_DOWNLOAD_URL;
+        File mavenWrapperPropertyFile = new File(baseDirectory, MAVEN_WRAPPER_PROPERTIES_PATH);
+        String url = DEFAULT_DOWNLOAD_URL;
         if (mavenWrapperPropertyFile.exists()) {
             FileInputStream mavenWrapperPropertyFileInputStream = null;
             try {
@@ -102,7 +102,7 @@ public class MavenWrapperDownloader {
     }
 
     private static void downloadFileFromURL(String urlString, File destination) throws Exception {
-        URL                 website = new URL(urlString);
+        URL website = new URL(urlString);
         ReadableByteChannel rbc;
         rbc = Channels.newChannel(website.openStream());
         FileOutputStream fos = new FileOutputStream(destination);
